@@ -72,4 +72,15 @@ public class RegisterOperand implements Operand {
 
         return "RegisterOperand(" + firstComponent.toString() + ", " + secondComponent.toString() + ", " + thirdComponent.toString() + ")";
     }
+
+    public int getSize() {
+        if (secondComponent == null && thirdComponent == null) {
+            return 1;
+        }
+        if (thirdComponent == null) {
+            return 2;
+        }
+
+        return 3;
+    }
 }

@@ -13,7 +13,6 @@ public class HexNumber implements Number {
     private HexNumber(String hexValue) {
         this.hexValue = hexValue;
 
-        // Определяем, какие символы являются шестнадцатеричными цифрами (без префикса)
         String hexDigits;
         if (hexValue.startsWith("0x") || hexValue.startsWith("0X")) {
             hexDigits = hexValue.substring(2);
@@ -47,6 +46,26 @@ public class HexNumber implements Number {
         } catch (IllegalArgumentException e) {
             return null;
         }
+    }
+
+    public int getExtendedValue() {
+        int p = Math.abs(decimalValue) & 0b1111;
+
+        if (p > 7) {
+            return p + 0b10000;
+        }
+
+        return p;
+    }
+
+    public int getExtendedForOffset() {
+        int p = Math.abs(decimalValue) & 0b11111;
+
+        if (p > 15) {
+            return p + 0b100000;
+        }
+
+        return p;
     }
 
     @Override

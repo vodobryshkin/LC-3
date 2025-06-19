@@ -5,7 +5,7 @@ public record Line(Label label, Object instructionOrDirective, Comment comment) 
     public static Line parseLine(String line) {
         line = line.trim();
         if (line.isEmpty()) {
-            return new Line(null, null, null);
+            return null;
         }
 
         Label label = null;

@@ -15,7 +15,7 @@ public class Tokenizer {
     public static void main(String[] args) {
         Tokenizer tokenizer = new Tokenizer();
         AssemblyFileReader reader = new AssemblyFileReader();
-        Program program = tokenizer.tokenizeProgram(reader.readAssemblyFile("/home/vodobryshkin/progs/proj/IdeaProjects/6502/text.asm"));
+        Program program = tokenizer.tokenizeProgram(reader.readAssemblyFile("/home/vodobryshkin/progs/proj/IdeaProjects/6502/assembly/src/test/resources/test1.asm"));
         System.out.println(program);
     }
 }

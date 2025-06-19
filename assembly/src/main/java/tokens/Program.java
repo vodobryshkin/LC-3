@@ -1,11 +1,18 @@
 package tokens;
 
+import lombok.Getter;
 import tokens.line.Line;
-import tools.AssemblyFileReader;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
-public record Program(ArrayList<Line> lines) {
+@Getter
+public final class Program {
+    private final ArrayList<Line> lines;
+
+    public Program(ArrayList<Line> lines) {
+        this.lines = lines;
+    }
 
     public static Program parseProgram(ArrayList<String> program) {
         ArrayList<Line> lines = new ArrayList<>();
@@ -34,10 +41,20 @@ public record Program(ArrayList<Line> lines) {
 
         return sb.toString();
     }
-
-    public static void main(String[] args) {
-        AssemblyFileReader reader = new AssemblyFileReader();
-        Program.parseProgram(reader.readAssemblyFile("/home/vodobryshkin/progs/proj/IdeaProjects/6502/text.asm")).toString();
+    public ArrayList<Line> lines() {
+        return lines;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) return true;
+        if (obj == null || obj.getClass() != this.getClass()) return false;
+        var that = (Program) obj;
+        return Objects.equals(this.lines, that.lines);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(lines);
+    }
 }
